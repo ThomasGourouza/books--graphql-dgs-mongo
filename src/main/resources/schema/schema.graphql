@@ -1,11 +1,12 @@
-type Hello {
-    text: String!
-    randomNumber: Int
-}
-
 type Query {
     allHellos: [Hello]
     oneHello: Hello
+    monTest(input: String!): String
+}
+
+type Hello {
+    text: String!
+    randomNumber: Int
 }
 
 # Optional
