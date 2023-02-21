@@ -31,3 +31,11 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+generateJava {
+	packageName = 'com.thomasgourouza.graphql.generated'
+	typeMapping = [	"Date": 			"java.time.LocalDate",
+					"DateTime": 		"java.time.LocalDateTime",
+					"NonNegativeInt": 	"java.lang.Integer",
+					"Url": 				"java.net.URL"]
+}
