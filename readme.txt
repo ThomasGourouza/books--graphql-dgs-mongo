@@ -109,3 +109,15 @@ http://localhost:8082/endpoint?mandatoryParam=MandatoryParam&optionalParam=opt
 query {
   additionalOnRequest
 }
+
+------------------------------------------------------------------------
+
+subscription url: ws://localhost:8082/subscriptions
+
+subscription getStockEveryInterval {
+  randomStock {
+    symbol
+    price
+  }
+}
+
