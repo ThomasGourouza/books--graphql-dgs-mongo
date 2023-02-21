@@ -3,8 +3,7 @@ type Hello {
     randomNumber: Int
 }
 
-# Optional
-# schema {
-#     query: Query
-#     mutation: Mutation
-# }
+input HelloInput{
+    number: Int!,
+    newText: String!
+}

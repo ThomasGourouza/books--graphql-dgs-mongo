@@ -35,7 +35,7 @@ tasks.named('test') {
 generateJava {
 	packageName = 'com.thomasgourouza.graphql.generated'
 	typeMapping = [	"Date": 			"java.time.LocalDate",
-					"DateTime": 		"java.time.LocalDateTime",
+					"DateTime": 		"java.time.OffsetDateTime",
 					"NonNegativeInt": 	"java.lang.Integer",
 					"Url": 				"java.net.URL"]
 }

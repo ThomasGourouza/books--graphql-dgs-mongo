@@ -17,7 +17,7 @@ import com.thomasgourouza.graphql.generated.types.PetFoodType;
 import io.micrometer.common.util.StringUtils;
 
 @DgsComponent
-public class FakeCatDataResolver {
+public class FakePetDataResolver {
 
     @DgsData(parentType = "Query", field = "pets")
     public List<Pet> getPets(@InputArgument(name = "petFilter") Optional<PetFilter> filter) {

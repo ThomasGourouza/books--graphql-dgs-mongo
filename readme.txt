@@ -55,10 +55,7 @@ _____________ variable _____________
 }
 
 
-
-
 section 4, 23 -> filters
-
 
 ------------------------------------------------------------------------
 
@@ -81,11 +78,34 @@ query pets($petFilter: PetFilter) {
   }
 }
 
-
 ____________
 
 {
   "petFilter": {
     "petType": "Cat"
   }
+}
+
+------------------------------------------------------------------------
+
+mutation whatever($helloInput: HelloInput!) {
+  addHello(helloInput: $helloInput)
+}
+
+____________
+
+{
+  "helloInput": {
+    "number": 4,
+    "newText": "text"
+  }
+}
+
+------------------------------------------------------------------------
+
+http://localhost:8082/endpoint?mandatoryParam=MandatoryParam&optionalParam=opt
+
+
+query {
+  additionalOnRequest
 }
