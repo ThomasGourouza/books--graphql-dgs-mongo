@@ -9,8 +9,7 @@ type Query {
     allHellos: [Hello]
     oneHello: Hello
     books(author: String): [Book]
-    # booksByReleased(releasedInput: ReleaseHistoryInput!): [Book]
-    # mobileApps(mobileAppFilter: MobileAppFilter): [MobileApp]
+    booksByReleased(releasedInput: ReleaseHistoryInput!): [Book]
     pets(petFilter: PetFilter): [Pet]
     smartSearch(keyword: String): [SmartSearchResult]
     additionalOnRequest: String

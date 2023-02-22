@@ -121,3 +121,6 @@ subscription getStockEveryInterval {
   }
 }
 
+-------------------------------------------------
+
+curl 'https://swapi-graphql.netlify.app/.netlify/functions/index' -H 'Content-Type:application/json' --data-binary'query{allPlanets{planets{name climates terrains}}}'
