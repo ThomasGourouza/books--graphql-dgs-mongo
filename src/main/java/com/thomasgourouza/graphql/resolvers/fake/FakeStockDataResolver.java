@@ -1,4 +1,4 @@
-package com.thomasgourouza.graphql.components.fake;
+package com.thomasgourouza.graphql.resolvers.fake;
 
 
 import com.netflix.graphql.dgs.DgsComponent;

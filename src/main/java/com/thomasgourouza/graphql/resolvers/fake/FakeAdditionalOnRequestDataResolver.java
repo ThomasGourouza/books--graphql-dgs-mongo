@@ -1,4 +1,4 @@
-package com.thomasgourouza.graphql.components.fake;
+package com.thomasgourouza.graphql.resolvers.fake;
 
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;

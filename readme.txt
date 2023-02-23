@@ -124,3 +124,30 @@ subscription getStockEveryInterval {
 -------------------------------------------------
 
 curl 'https://swapi-graphql.netlify.app/.netlify/functions/index' -H 'Content-Type:application/json' --data-binary'query{allPlanets{planets{name climates terrains}}}'
+
+
+
+
+example data mongodb
+
+{
+    "title": "Du texte",
+    "publisher": "Du texte",
+    "author": {
+        "name": "Du texte",
+        "originCountry": "Du texte",
+        "addresses": [
+            {
+                "street": "Du texte",
+                "city": "Du texte",
+                "zipCode": "Du texte",
+                "country": "Du texte"
+            }
+        ]
+    },
+    "released": {
+        "year": 2020,
+        "printedEdition": true,
+        "releasedCountry": "Du texte"
+    }
+}
