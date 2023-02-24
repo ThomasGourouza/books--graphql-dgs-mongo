@@ -19,6 +19,7 @@ type Query {
 
 type Mutation {
     addHello(helloInput: HelloInput!): Int
+    addBook(bookInput: BookInput!): Book
     replaceHelloText(helloInput: HelloInput!): [Hello]
     deleteHello(number: Int!): Int
 #     userCreate(user: UserCreateInput!): UserResponse!

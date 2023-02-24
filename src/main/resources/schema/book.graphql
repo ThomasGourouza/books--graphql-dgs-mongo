@@ -24,7 +24,28 @@ type Book {
     released: ReleaseHistory
 }
 
+input BookInput{
+    title: String!
+    publisher: String!
+    author: AuthorInput!
+    released: ReleaseHistoryInput
+}
+
+input AuthorInput {
+    name: String!
+    originCountry: String
+    addresses: [AddressInput!]!
+}
+
+input AddressInput {
+    street: String!
+    city: String!
+    zipCode: String
+    country: String!
+}
+
 input ReleaseHistoryInput {
-    year: Int
+    year: Int!
     printedEdition: Boolean
+    releasedCountry: String
 }

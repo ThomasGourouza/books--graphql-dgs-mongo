@@ -151,3 +151,59 @@ example data mongodb
         "releasedCountry": "Du texte"
     }
 }
+
+
+
+----------------------------------------------------
+
+
+mutation newBook($bookInput: BookInput!) {
+  addBook(bookInput: $bookInput) {
+    title
+    publisher
+    author {
+      name
+      originCountry
+      addresses {
+        street
+        city
+        zipCode
+        country
+      }
+    }
+    released {
+      year
+      printedEdition
+      releasedCountry
+    }
+  }
+}
+
+_______________
+
+
+{
+  "bookInput": {
+    "title": "Guérilla",
+    "publisher": "Rings",
+    "author": {
+        "name": "Obertone",
+        "originCountry": "France",
+        "addresses": [
+            {
+                "street": "rue de la paix",
+                "city": "Paris",
+                "zipCode": "75000",
+                "country": "France"
+            }
+        ]
+    },
+    "released": {
+        "year": 2020,
+        "printedEdition": true,
+        "releasedCountry": "France"
+    }
+  }
+}
+
+
