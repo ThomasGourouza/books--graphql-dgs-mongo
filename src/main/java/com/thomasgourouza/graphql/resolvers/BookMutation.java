@@ -2,6 +2,9 @@ package com.thomasgourouza.graphql.resolvers;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.ArrayList;
 
 import com.netflix.graphql.dgs.DgsComponent;
@@ -13,9 +16,13 @@ import com.thomasgourouza.graphql.generated.types.Author;
 import com.thomasgourouza.graphql.generated.types.Book;
 import com.thomasgourouza.graphql.generated.types.BookInput;
 import com.thomasgourouza.graphql.generated.types.ReleaseHistory;
+import com.thomasgourouza.graphql.services.BookService;
 
 @DgsComponent
 public class BookMutation {
+
+    @Autowired
+    private BookService bookService;
 
     // @DgsMutation
     @DgsData(parentType = DgsConstants.MUTATION.TYPE_NAME, field = DgsConstants.MUTATION.AddBook)
@@ -40,13 +47,15 @@ public class BookMutation {
             .printedEdition(input.getReleased().getPrintedEdition())
             .releasedCountry(input.getReleased().getReleasedCountry())
             .build();
-
-        return Book.newBuilder()
+        
+        var book = Book.newBuilder()
             .title(input.getTitle())
             .publisher(input.getPublisher())
             .author(author)
             .released(released)
             .build();
+
+        return bookService.createBook(book);
     }
 
 }
