@@ -3,6 +3,11 @@ scalar Date
 scalar NonNegativeInt
 scalar DateTime
 
+schema {
+  query: Query
+  mutation: Mutation
+}
+
 union SmartSearchResult = Hello | Book
 
 type Query {
