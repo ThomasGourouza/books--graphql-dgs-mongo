@@ -29,3 +29,5 @@ type Cat implements Pet {
 input PetFilter {
     petType: String
 }
+
+# union Pet = Cat | Dog
