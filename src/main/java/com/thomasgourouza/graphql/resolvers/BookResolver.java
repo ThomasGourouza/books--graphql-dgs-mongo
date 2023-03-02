@@ -40,6 +40,11 @@ public class BookResolver {
                 //                 .collect(Collectors.toList());
         }
 
+        @DgsData(parentType = DgsConstants.QUERY_TYPE,  field = DgsConstants.QUERY.BookById)
+        public Book getBookById(@InputArgument(name = "id") String id) {
+                return bookService.getBook(id);
+        }
+
         @DgsData(parentType = DgsConstants.QUERY_TYPE, field = DgsConstants.QUERY.BooksByReleased)
         public List<Book> getBooksByReleased(DataFetchingEnvironment dataFetchingEnvironment) {
                 @SuppressWarnings("unchecked")

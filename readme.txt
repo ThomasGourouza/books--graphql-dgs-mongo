@@ -6,6 +6,8 @@ gradle build
 gradle build -x test
 gradle bootRun
 
+gradle clean bootRun --debug-jvm
+gradle clean bR -d
 
 
 

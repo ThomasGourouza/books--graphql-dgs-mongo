@@ -18,6 +18,7 @@ type ReleaseHistory {
 }
 
 type Book {
+    id: ID!
     title: String!
     publisher: String!
     author: Author!

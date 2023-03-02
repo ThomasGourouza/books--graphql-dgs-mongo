@@ -11,9 +11,11 @@ import com.netflix.graphql.dgs.InputArgument;
 import com.thomasgourouza.graphql.generated.DgsConstants;
 import com.thomasgourouza.graphql.generated.types.Address;
 import com.thomasgourouza.graphql.generated.types.Author;
+import com.thomasgourouza.graphql.generated.types.AuthorInput;
 import com.thomasgourouza.graphql.generated.types.Book;
 import com.thomasgourouza.graphql.generated.types.BookInput;
 import com.thomasgourouza.graphql.generated.types.ReleaseHistory;
+import com.thomasgourouza.graphql.generated.types.ReleaseHistoryInput;
 import com.thomasgourouza.graphql.services.BookService;
 
 @DgsComponent
@@ -25,7 +27,33 @@ public class BookMutation {
     // @DgsMutation
     @DgsData(parentType = DgsConstants.MUTATION.TYPE_NAME, field = DgsConstants.MUTATION.AddBook)
     public Book addBook(@InputArgument(name = "bookInput") BookInput input) {
-        List<Address> addresses = input.getAuthor().getAddresses().stream().map(addressInput ->
+        var book = Book.newBuilder()
+            .title(input.getTitle())
+            .publisher(input.getPublisher())
+            .author(buildAuthor(input.getAuthor()))
+            .released(buildRelease(input.getReleased()))
+            .build();
+
+        return bookService.createBook(book);
+    }
+
+    // @DgsMutation
+    @DgsData(parentType = DgsConstants.MUTATION.TYPE_NAME, field = DgsConstants.MUTATION.UpdateBook)
+    public Book updateBook(@InputArgument(name = "id") String id, @InputArgument(name = "bookInput") BookInput input) {
+        Book book = bookService.getBook(id);
+        if (book == null) {
+            return null;
+        }
+        book.setTitle(input.getTitle());
+        book.setPublisher(input.getPublisher());
+        book.setAuthor(buildAuthor(input.getAuthor()));
+        book.setReleased(buildRelease(input.getReleased()));
+
+        return bookService.createBook(book);
+    }
+
+    private Author buildAuthor(AuthorInput authorInput) {
+        List<Address> addresses = authorInput.getAddresses().stream().map(addressInput ->
             Address.newBuilder()
                 .street(addressInput.getStreet())
                 .city(addressInput.getCity())
@@ -34,26 +62,18 @@ public class BookMutation {
                 .build()
         ).collect(Collectors.toList());
 
-        var author = Author.newBuilder()
-            .name(input.getAuthor().getName())
-            .originCountry(input.getAuthor().getOriginCountry())
+        return Author.newBuilder()
+            .name(authorInput.getName())
+            .originCountry(authorInput.getOriginCountry())
             .addresses(addresses)
             .build();
-
-        var released = ReleaseHistory.newBuilder()
-            .year(input.getReleased().getYear())
-            .printedEdition(input.getReleased().getPrintedEdition())
-            .releasedCountry(input.getReleased().getReleasedCountry())
-            .build();
-        
-        var book = Book.newBuilder()
-            .title(input.getTitle())
-            .publisher(input.getPublisher())
-            .author(author)
-            .released(released)
-            .build();
-
-        return bookService.createBook(book);
     }
 
+    private ReleaseHistory buildRelease(ReleaseHistoryInput releaseHistoryInput) {
+        return ReleaseHistory.newBuilder()
+            .year(releaseHistoryInput.getYear())
+            .printedEdition(releaseHistoryInput.getPrintedEdition())
+            .releasedCountry(releaseHistoryInput.getReleasedCountry())
+            .build();
+    }
 }

@@ -14,6 +14,7 @@ type Query {
     allHellos: [Hello]
     oneHello: Hello
     books(author: String): [Book]
+    bookById(id: String): Book
     booksByReleased(releasedInput: ReleaseHistoryInput!): [Book]
     pets(petFilter: PetFilter): [Pet]
     smartSearch(keyword: String): [SmartSearchResult]
@@ -25,6 +26,7 @@ type Query {
 type Mutation {
     addHello(helloInput: HelloInput!): Int
     addBook(bookInput: BookInput!): Book
+    updateBook(id: String!, bookInput: BookInput!): Book
     replaceHelloText(helloInput: HelloInput!): [Hello]
     deleteHello(number: Int!): Int
 #     userCreate(user: UserCreateInput!): UserResponse!
