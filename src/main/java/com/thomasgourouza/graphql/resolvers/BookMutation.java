@@ -52,6 +52,18 @@ public class BookMutation {
         return bookService.createBook(book);
     }
 
+    // @DgsMutation
+    @DgsData(parentType = DgsConstants.MUTATION.TYPE_NAME, field = DgsConstants.MUTATION.DeleteBookById)
+    public Boolean deleteBook(@InputArgument(name = "id") String id) {
+        Book book = bookService.getBook(id);
+        if (book == null) {
+            return false;
+        }
+        bookService.removeBook(id);
+
+        return true;
+    }
+
     private Author buildAuthor(AuthorInput authorInput) {
         List<Address> addresses = authorInput.getAddresses().stream().map(addressInput ->
             Address.newBuilder()

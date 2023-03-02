@@ -27,6 +27,7 @@ type Mutation {
     addHello(helloInput: HelloInput!): Int
     addBook(bookInput: BookInput!): Book
     updateBook(id: String!, bookInput: BookInput!): Book
+    deleteBookById(id: String!): Boolean
     replaceHelloText(helloInput: HelloInput!): [Hello]
     deleteHello(number: Int!): Int
 #     userCreate(user: UserCreateInput!): UserResponse!
