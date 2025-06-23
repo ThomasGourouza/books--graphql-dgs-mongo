@@ -11,10 +11,6 @@ gradle clean bR -d
 
 
 
-In schema, was ist der Unterschied zwischen .graphql und .graphqls ?
-
-
-
 ____________ Tips: ____________
 
 
